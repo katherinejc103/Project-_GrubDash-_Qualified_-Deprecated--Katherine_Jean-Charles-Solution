@@ -18,10 +18,10 @@ function create(req, res) {
   
     const newDish = {
         id: ++lastDishId,
-        name,
-        description,
-        price,
-        image_url
+        name: name,
+        description: description,
+        price: price,
+        image_url : image_url,
     }
     dishes.push(newDish);
     res.status(201).json({ data: newDish });
@@ -32,4 +32,15 @@ function list(req, res){
  const {dishId} = req.params
  res.json({ data: dishes.filter(dishId ? dish => dish.id == dishId : () => true) });
 
+}
+
+module.exports = {
+    create: [
+        bodyDataHas("name"),
+        bodyDataHas("description"),
+        bodyDataHas("price"),
+        bodyDataHas("image_url"),
+        create
+    ],
+    list
 }
