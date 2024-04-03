@@ -1,4 +1,4 @@
-import {useParams} from react
+
 const path = require("path");
 
 // Use the existing dishes data
@@ -13,8 +13,8 @@ function create(req, res) {
   
   let lastDishId = dishes.reduce((maxId, dish) => Math.max(maxId, dish.id), 0);
 
-  app.post("/dishes", (req, res, next) => {
-    const {data: { name, description, price, image_url } = {} } = req.body;
+//   app.post("/dishes", (req, res, next) => {
+//     const {data: { name, description, price, image_url } = {} } = req.body;
   
     const newDish = {
         id: ++lastDishId,
@@ -25,7 +25,7 @@ function create(req, res) {
     }
     dishes.push(newDish);
     res.status(201).json({ data: newDish });
-  })
+ 
 }
 
 function list(req, res){
