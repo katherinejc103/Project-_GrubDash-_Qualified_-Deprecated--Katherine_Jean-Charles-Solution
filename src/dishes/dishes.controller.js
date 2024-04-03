@@ -35,12 +35,6 @@ function list(req, res){
 }
 
 module.exports = {
-    create: [
-        bodyDataHas("name"),
-        bodyDataHas("description"),
-        bodyDataHas("price"),
-        bodyDataHas("image_url"),
-        create
-    ],
+    create,
     list
 }
