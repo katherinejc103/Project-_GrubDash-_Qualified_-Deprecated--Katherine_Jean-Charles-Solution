@@ -1,3 +1,4 @@
+import {useParams} from react
 const path = require("path");
 
 // Use the existing dishes data
@@ -8,10 +9,8 @@ const nextId = require("../utils/nextId");
 
 // TODO: Implement the /dishes handlers needed to make the tests pass
 
-app.get('/dishes', (req, res) => {
-    res.json({ data: dishes });
-  });
-
+function create(req, res) {
+  
   let lastDishId = dishes.reduce((maxId, dish) => Math.max(maxId, dish.id), 0);
 
   app.post("/dishes", (req, res, next) => {
@@ -26,4 +25,11 @@ app.get('/dishes', (req, res) => {
     }
     dishes.push(newDish);
     res.status(201).json({ data: newDish });
-  });
+  })
+}
+
+function list(req, res){
+ const {dishId} = req.params
+ res.json({ data: dishes.filter(dishId ? dish => dish.id == dishId : () => true) });
+
+}
